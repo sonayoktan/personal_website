@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none">
+  <defs>
+    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fca311" />
+      <stop offset="100%" stop-color="#e85d04" />
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a2b38" />
+      <stop offset="100%" stop-color="#14151f" />
+    </linearGradient>
+  </defs>
+  <!-- Background Circle -->
+  <circle cx="64" cy="64" r="64" fill="url(#bgGrad)" />
+  
+  <!-- Subtle Glow Effect -->
+  <circle cx="64" cy="64" r="60" stroke="#fca311" stroke-opacity="0.25" stroke-width="2" />
+
+  <!-- Stylized Developer Head & Shoulders -->
+  <!-- Body/Shoulders -->
+  <path d="M28 108C28 92 42 80 64 80C86 80 100 92 100 108" fill="url(#avatarGrad)" />
+  
+  <!-- Neck -->
+  <rect x="56" y="66" width="16" height="18" rx="4" fill="#fed7aa" />
+  
+  <!-- Head -->
+  <circle cx="64" cy="50" r="22" fill="#fed7aa" />
+  
+  <!-- Modern Hair -->
+  <path d="M42 50C42 34 50 26 64 26C78 26 86 34 86 44C86 46 84 46 82 43C78 37 72 35 64 35C54 35 48 40 44 49C43 51 42 51 42 50Z" fill="#1f2937" />
+  
+  <!-- Glasses / Developer look -->
+  <rect x="50" y="45" width="11" height="9" rx="2" stroke="#1f2937" stroke-width="2" fill="none" />
+  <rect x="67" y="45" width="11" height="9" rx="2" stroke="#1f2937" stroke-width="2" fill="none" />
+  <line x1="61" y1="49" x2="67" y2="49" stroke="#1f2937" stroke-width="2" />
+  
+  <!-- Friendly Smile -->
+  <path d="M59 60C62 63 66 63 69 60" stroke="#b45309" stroke-width="2" stroke-linecap="round" />
+</svg>
