@@ -7,7 +7,8 @@ Bu proje, [hudovich.com](https://hudovich.com/) şablonunun modern, minimalist g
 - **Sıfır Bağımlılık (Zero Dependencies)**: Saf HTML5, modern CSS3 ve minimal Vanilla JS (~40 satır). Node.js, npm veya derleyici gerektirmez.
 - **Geist Mono Tipografisi**: Modern yazılımcı ve indie hacker estetiği.
 - **Açık & Koyu Tema Desteği**: `localStorage` ve sistem tercihi (`prefers-color-scheme`) ile tam uyumlu, sayfa yenilendiğinde titreşme (flicker) yapmayan tema motoru.
-- **İnteraktif Proje Kartları**: 2 kolonlu responsive grid, renkli durum rozetleri (`Active`, `Sold`, `Open Source`, `Discontinued`), hover ring ve harici bağlantı ok animasyonu.
+- **Çift Dil Desteği (TR / EN)**: Header'daki modern segment buton ile Türkçe ve İngilizce dilleri arasında anında geçiş, `localStorage` ile dil tercihi kalıcılığı ve tarayıcı dili otomatik tespiti.
+- **İnteraktif Proje Kartları**: 2 kolonlu responsive grid, renkli durum rozetleri, hover efektleri ve akademik araştırmalar.
 - **Sosyal Medya Rozetleri**: GitHub, LinkedIn, X/Twitter, Bluesky, Threads, Instagram.
 - **Ultra Hızlı**: Toplam boyut < 25KB, yükleme süresi < 50ms.
 

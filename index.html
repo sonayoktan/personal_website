@@ -14,7 +14,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Theme initialization script (prevents flicker on reload) -->
+  <!-- Theme & Language initialization script (prevents flicker on reload) -->
   <script>
     (function () {
       try {
@@ -25,6 +25,11 @@
         } else {
           document.documentElement.classList.remove('dark');
         }
+
+        var savedLang = localStorage.getItem('lang');
+        var browserIsTr = navigator.language && navigator.language.toLowerCase().startsWith('tr');
+        var lang = savedLang || (browserIsTr ? 'tr' : 'en');
+        document.documentElement.lang = lang;
       } catch (e) {}
     })();
   </script>
@@ -42,25 +47,35 @@
         <span class="brand-text">SY</span>
       </a>
 
-      <!-- Dark/Light Theme Switcher -->
-      <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">
-        <!-- Moon Icon (Shown in Light Mode) -->
-        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21.5 14.08C20.3 14.72 18.93 15.08 17.48 15.08 12.75 15.08 8.92 11.25 8.92 6.52c0-1.45.36-2.82 1-4.02C5.67 3.5 2.5 7.32 2.5 11.87 2.5 17.19 6.81 21.5 12.13 21.5c4.56 0 8.38-3.17 9.37-7.42z" />
-        </svg>
-        <!-- Sun Icon (Shown in Dark Mode) -->
-        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="5" />
-          <line x1="12" y1="1" x2="12" y2="3" />
-          <line x1="12" y1="21" x2="12" y2="23" />
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-          <line x1="1" y1="12" x2="3" y2="12" />
-          <line x1="21" y1="12" x2="23" y2="12" />
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-        </svg>
-      </button>
+      <!-- Header Controls: Language & Theme -->
+      <div class="header-actions">
+        <!-- Multi-Language Switcher (EN / TR) -->
+        <div class="lang-switch" id="lang-switch" role="group" aria-label="Language selection">
+          <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true" aria-label="English">EN</button>
+          <span class="lang-divider">/</span>
+          <button type="button" class="lang-btn" data-lang="tr" aria-pressed="false" aria-label="Türkçe">TR</button>
+        </div>
+
+        <!-- Dark/Light Theme Switcher -->
+        <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">
+          <!-- Moon Icon (Shown in Light Mode) -->
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.5 14.08C20.3 14.72 18.93 15.08 17.48 15.08 12.75 15.08 8.92 11.25 8.92 6.52c0-1.45.36-2.82 1-4.02C5.67 3.5 2.5 7.32 2.5 11.87 2.5 17.19 6.81 21.5 12.13 21.5c4.56 0 8.38-3.17 9.37-7.42z" />
+          </svg>
+          <!-- Sun Icon (Shown in Dark Mode) -->
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -72,19 +87,19 @@
       <section class="hero-section">
         <img src="assets/avatar.jpeg" alt="Sonay Yoktan" class="avatar-img" width="150" height="150" />
         
-        <h1 class="hero-title">Hey, I'm <span class="name-highlight">Sonay Yoktan</span>!</h1>
+        <h1 class="hero-title" data-i18n-html="heroTitle">Hey, I'm <span class="name-highlight">Sonay Yoktan</span>!</h1>
         
         <div class="hero-bio">
           <p>
-            A biologist based in Turkey
-            <svg class="flag-icon" viewBox="0 0 1200 800">
+            <span data-i18n="heroBioLocation">A biologist based in Turkey</span>
+            <svg class="flag-icon" viewBox="0 0 1200 800" aria-label="Flag of Turkey">
               <rect width="1200" height="800" fill="#E30A17"/>
               <circle cx="425" cy="400" r="200" fill="#ffffff"/>
               <circle cx="475" cy="400" r="160" fill="#E30A17"/>
               <polygon points="583.3,400 706.7,440.1 630.5,335.2 630.5,464.8 706.7,359.9" fill="#ffffff"/>
             </svg>
           </p>
-          <p>Experienced in molecular biology, laboratory research, and biodiversity studies with hands-on project experience across national research programmes.</p>
+          <p data-i18n="heroBioExp">Experienced in molecular biology, laboratory research, and biodiversity studies with hands-on project experience across national research programmes.</p>
         </div>
 
         <div class="hero-actions">
@@ -94,7 +109,7 @@
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
               <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
-            Send email
+            <span data-i18n="heroEmailBtn">Send email</span>
           </a>
         </div>
       </section>
@@ -102,8 +117,8 @@
       <!-- Projects Section -->
       <section class="projects-section">
         <div class="section-header">
-          <h2 class="section-title">Research & Projects</h2>
-          <p class="section-desc">Selected research projects, fieldwork, and scientific investigations:</p>
+          <h2 class="section-title" data-i18n="projectsTitle">Research & Projects</h2>
+          <p class="section-desc" data-i18n="projectsDesc">Selected research projects, fieldwork, and scientific investigations:</p>
         </div>
 
         <div class="projects-grid">
@@ -123,11 +138,11 @@
                     <path d="M12 6V3a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v3"></path>
                   </svg>
                 </div>
-                <h3 class="card-title">Sea of Marmara Benthic Genetics</h3>
+                <h3 class="card-title" data-i18n="project1Title">Sea of Marmara Benthic Genetics</h3>
               </div>
               <span class="badge badge-emerald">TÜBİTAK 1001</span>
             </div>
-            <p class="card-desc">Molecular genetics & DNA barcoding assessing the two-layer hydrography's impact on macrozoobenthic invertebrate diversity (METU IMS).</p>
+            <p class="card-desc" data-i18n="project1Desc">Molecular genetics & DNA barcoding assessing the two-layer hydrography's impact on macrozoobenthic invertebrate diversity (METU IMS).</p>
           </article>
 
           <!-- Project Card 2 -->
@@ -142,11 +157,11 @@
                     <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
                   </svg>
                 </div>
-                <h3 class="card-title"><em>Patella caerulea</em> Ecology</h3>
+                <h3 class="card-title" data-i18n-html="project2Title"><em>Patella caerulea</em> Ecology</h3>
               </div>
               <span class="badge badge-blue">TÜBİTAK 2209-A</span>
             </div>
-            <p class="card-desc">Principal Investigator analyzing population density, shell morphology, and intertidal dynamics of <em>Patella caerulea</em> along the Sinop coast.</p>
+            <p class="card-desc" data-i18n-html="project2Desc">Principal Investigator analyzing population density, shell morphology, and intertidal dynamics of <em>Patella caerulea</em> along the Sinop coast.</p>
           </article>
 
           <!-- Project Card 3 -->
@@ -163,11 +178,11 @@
                     <path d="M5.52 16h12.96"></path>
                   </svg>
                 </div>
-                <h3 class="card-title">Marine Pollution Monitoring</h3>
+                <h3 class="card-title" data-i18n="project3Title">Marine Pollution Monitoring</h3>
               </div>
               <span class="badge badge-orange">TÜBİTAK MAM</span>
             </div>
-            <p class="card-desc">Seabed biodiversity monitoring and environmental health evaluation across the Sea of Marmara and Black Sea with TÜBİTAK MAM.</p>
+            <p class="card-desc" data-i18n="project3Desc">Seabed biodiversity monitoring and environmental health evaluation across the Sea of Marmara and Black Sea with TÜBİTAK MAM.</p>
           </article>
 
           <!-- Project Card 4 -->
@@ -181,11 +196,11 @@
                     <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 12 12"></path>
                   </svg>
                 </div>
-                <h3 class="card-title">Conservation & EEBST 2026</h3>
+                <h3 class="card-title" data-i18n="project4Title">Conservation & EEBST 2026</h3>
               </div>
-              <span class="badge badge-emerald">Field & Research</span>
+              <span class="badge badge-emerald" data-i18n="project4Badge">Field & Research</span>
             </div>
-            <p class="card-desc">Oral presentation at EEBST 2026 symposium & volunteer fieldwork monitoring and protecting <em>Caretta caretta</em> and <em>Chelonia mydas</em> sea turtles.</p>
+            <p class="card-desc" data-i18n-html="project4Desc">Oral presentation at EEBST 2026 symposium & volunteer fieldwork monitoring and protecting <em>Caretta caretta</em> and <em>Chelonia mydas</em> sea turtles.</p>
           </article>
 
         </div>
@@ -194,8 +209,8 @@
       <!-- Find Me On Section -->
       <section class="socials-section">
         <div class="section-header">
-          <h2 class="section-title">Find me on</h2>
-          <p class="section-desc">You can find me on the following platforms:</p>
+          <h2 class="section-title" data-i18n="socialsTitle">Find me on</h2>
+          <p class="section-desc" data-i18n="socialsDesc">You can find me on the following platforms:</p>
         </div>
 
         <ul class="socials-list">
@@ -225,14 +240,14 @@
       <!-- Get In Touch Section -->
       <section class="contact-section">
         <div class="section-header">
-          <h2 class="section-title">Get in touch</h2>
+          <h2 class="section-title" data-i18n="contactTitle">Get in touch</h2>
         </div>
         <div class="contact-links">
           <p>
-            You can reach me anytime at
+            <span data-i18n="contactPrefix">You can reach me anytime at</span>
             <a href="mailto:sonayoktan@gmail.com" class="text-link">
               <span class="animated-link">sonayoktan@gmail.com</span>
-            </a>
+            </a><span data-i18n="contactSuffix"></span>
           </p>
         </div>
       </section>
@@ -244,16 +259,16 @@
   <footer>
     <div class="container-fluid footer-content">
       <p class="footer-author">
-        <span>© <span id="current-year">2026</span> Built with</span>
+        <span>© <span id="current-year">2026</span> <span data-i18n="footerPrefix">Built with</span></span>
         <svg class="heart-icon" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.85">
           <path d="M10.4 20C7.6 17.8 2 13 2 8.7 2 5.8 4.1 3.5 7 3.5c1.5 0 3 .5 5 2.5 2-2 3.5-2.5 5-2.5 2.9 0 5 2.3 5 5.2 0 4.3-5.6 9.1-8.4 11.3-.9.7-2.2.7-3.2 0z"/>
         </svg>
-        <span>by Sonay Yoktan</span>
+        <span data-i18n="footerAuthor">by Sonay Yoktan</span>
       </p>
       <p class="footer-source">
-        <span>This website is</span>
+        <span data-i18n="footerSourceText">This website is</span>
         <a href="https://github.com" target="_blank" rel="noreferrer" class="text-link">
-          <span class="animated-link">open source</span>
+          <span class="animated-link" data-i18n="footerSourceLink">open source</span>
           <svg class="source-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85">
             <circle cx="6" cy="6" r="2"></circle>
             <circle cx="12" cy="18" r="2"></circle>
